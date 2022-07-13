@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dotnet_Core_MVC.CustomActionFilters;
 
 namespace Dotnet_Core_MVC
 {
@@ -24,7 +25,14 @@ namespace Dotnet_Core_MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new CustomActionFilter());
+            });
+
+
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
             var ConnectionString = Configuration.GetConnectionString("SQLDB");
             //Entity Framework  
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(ConnectionString));

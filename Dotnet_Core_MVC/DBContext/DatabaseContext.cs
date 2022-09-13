@@ -9,8 +9,11 @@ namespace Dotnet_Core_MVC.DBContext
         {
 
         }
+        public DbSet<_React_File_Upload_Exp> Tbl_React_File_Upload_Exp { get; set; }
+
         //Funtion Call
         public virtual DbSet<FuntionOutput> funFullName { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FuntionOutput>(e => e.HasNoKey());
